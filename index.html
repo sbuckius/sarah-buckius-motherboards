@@ -113,10 +113,6 @@
   }
   .hero-badge .pip { width:5px;height:5px;border-radius:50%;background:var(--hot);box-shadow:0 0 6px var(--hot);animation:breathe 2s ease-in-out infinite; }
   @keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
-  @keyframes headIdlePulse{
-    0%,100%{box-shadow:0 0 0 8px rgba(255,45,107,.06),0 8px 40px rgba(255,45,107,.35);transform:scale(1);}
-    50%{box-shadow:0 0 0 14px rgba(255,45,107,.12),0 8px 60px rgba(255,45,107,.55),0 0 80px rgba(255,30,128,.2);transform:scale(1.03);}
-  }
   .hero-title {
     font-family: 'Nunito', sans-serif; font-weight: 900;
     font-size: clamp(32px, 7vw, 60px); line-height: 1.15;
@@ -203,9 +199,10 @@
     box-shadow: 0 10px 40px rgba(255,45,107,.3);
   }
   .img-cell img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
     display: block;
     background: rgba(255,45,107,.06);
+    cursor: zoom-in;
   }
   .img-caption {
     padding: 10px 12px 4px;
@@ -231,6 +228,11 @@
     box-shadow: 0 3px 14px rgba(255,45,107,.25);
   }
   .img-link::after { content: ' ↗'; }
+
+  /* Landscape override for carebots grid */
+  .img-grid.landscape .img-cell img {
+    aspect-ratio: 4/3;
+  }
 
   /* Video cell */
   .video-cell {
@@ -300,7 +302,6 @@
   }
   .artwork-body p:last-child { margin-bottom: 0; }
 
-  /* poem / centered text block */
   .poem-block {
     text-align: center;
     font-family: 'Nunito', sans-serif; font-weight: 700; font-style: italic;
@@ -310,7 +311,6 @@
     margin-bottom: 20px;
   }
 
-  /* INFO label */
   .info-label {
     font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
     color: var(--hot); font-family: 'Nunito', sans-serif; font-weight: 900;
@@ -440,14 +440,9 @@
     box-shadow: var(--soft-glow);
     color: var(--cream); font-size: 20px; line-height: 1;
     cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all .18s ease;
-    z-index: 10000;
+    transition: all .18s ease; z-index: 10000;
   }
-  .lightbox-close:hover {
-    background: rgba(255,45,107,.55);
-    transform: scale(1.12) rotate(90deg);
-  }
-  /* nav arrows */
+  .lightbox-close:hover { background: rgba(255,45,107,.55); transform: scale(1.12) rotate(90deg); }
   .lightbox-prev, .lightbox-next {
     position: fixed; top: 50%; transform: translateY(-50%);
     width: 44px; height: 44px; border-radius: 50%;
@@ -463,10 +458,8 @@
     background: rgba(255,45,107,.48);
     transform: translateY(-50%) scale(1.1);
   }
-  /* make images look clickable */
-  .img-cell img { cursor: zoom-in; }
 
-  /* section number label */
+  /* ── SECTION LABEL ── */
   .section-label {
     position: relative; z-index: 10;
     text-align: center; margin-bottom: 20px;
@@ -545,11 +538,12 @@
     <div class="img-cell">
       <img src="images/kitchen_computer_01.png" alt="Kitchen Computer Plushy 1" loading="lazy">
       <div class="img-caption">Kitchen Computer Plushy — view 01</div>
-      <a class="img-link" href="https://www.computerhistory.org/revolution/minicomputers/11/362" target="_blank" rel="noopener">View Original</a>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/kitchen_computer_02.png" alt="Kitchen Computer Plushy 2" loading="lazy">
       <div class="img-caption">Kitchen Computer Plushy — view 02</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/kitchen_computer_03.png" alt="Kitchen Computer Plushy 3" loading="lazy">
@@ -593,14 +587,16 @@
     <div class="artwork-type">performance</div>
   </div>
 
-  <div class="img-grid cols-2">
+  <div class="img-grid cols-3">
     <div class="img-cell">
       <img src="images/if_only_she_can_cook_01.png" alt="If only she can cook 1" loading="lazy">
       <div class="img-caption">Performance documentation — view 01</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/if_only_she_can_cook_02.png" alt="If only she can cook 2" loading="lazy">
       <div class="img-caption">Performance documentation — view 02</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/if_only_she_can_cook_03.png" alt="If only she can cook 3" loading="lazy">
@@ -609,6 +605,14 @@
     <div class="img-cell">
       <img src="images/if_only_she_can_cook_04.png" alt="If only she can cook 4" loading="lazy">
       <div class="img-caption">Performance documentation — view 04</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_05.png" alt="If only she can cook 5" loading="lazy">
+      <div class="img-caption">Performance documentation — view 05</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_06.png" alt="If only she can cook 6" loading="lazy">
+      <div class="img-caption">Performance documentation — view 06</div>
     </div>
   </div>
 
@@ -642,38 +646,46 @@
     <div class="artwork-title">Carebots</div>
   </div>
 
-  <div class="img-grid cols-4">
+  <div class="img-grid cols-4 landscape">
     <div class="img-cell">
       <img src="images/carebots_01.png" alt="Carebots 1" loading="lazy">
       <div class="img-caption">Carebot — 01</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_02.png" alt="Carebots 2" loading="lazy">
       <div class="img-caption">Carebot — 02</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_03.png" alt="Carebots 3" loading="lazy">
       <div class="img-caption">Carebot — 03</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_04.png" alt="Carebots 4" loading="lazy">
       <div class="img-caption">Carebot — 04</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_05.png" alt="Carebots 5" loading="lazy">
       <div class="img-caption">Carebot — 05</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_06.png" alt="Carebots 6" loading="lazy">
       <div class="img-caption">Carebot — 06</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_07.png" alt="Carebots 7" loading="lazy">
       <div class="img-caption">Carebot — 07</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
     <div class="img-cell">
       <img src="images/carebots_08.png" alt="Carebots 8" loading="lazy">
       <div class="img-caption">Carebot — 08</div>
+      <a class="img-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View Carebots</a>
     </div>
   </div>
 
@@ -706,10 +718,12 @@
     <div class="img-cell">
       <img src="images/the_mother_of_all_demos_01.png" alt="The Mother of All Demos 1" loading="lazy">
       <div class="img-caption">The Mother of All Demos — view 01</div>
+      <a class="img-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/the_mother_of_all_demos_02.png" alt="The Mother of All Demos 2" loading="lazy">
       <div class="img-caption">The Mother of All Demos — view 02</div>
+      <a class="img-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener">View Project</a>
     </div>
     <div class="img-cell">
       <img src="images/the_mother_of_all_demos_03.png" alt="The Mother of All Demos 3" loading="lazy">
@@ -779,12 +793,10 @@
   }
 
   // ── Lightbox ──
-  const overlay  = document.getElementById('lightbox');
-  const lbImg    = document.getElementById('lbImg');
-  const lbCap    = document.getElementById('lbCaption');
-  const lbInner  = document.getElementById('lbInner');
+  const overlay = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCap   = document.getElementById('lbCaption');
 
-  // Collect all grid images (not video thumbnails)
   let allImgs = [];
   let current = 0;
 
@@ -811,11 +823,9 @@
     const img = allImgs[current];
     lbImg.src = img.src;
     lbImg.alt = img.alt;
-    // get caption from sibling
     const cell = img.closest('.img-cell');
     const capEl = cell ? cell.querySelector('.img-caption') : null;
     lbCap.textContent = capEl ? capEl.textContent : img.alt;
-    // reset animation
     lbImg.style.animation = 'none';
     requestAnimationFrame(() => { lbImg.style.animation = ''; });
   }
@@ -826,11 +836,7 @@
   document.getElementById('lbClose').addEventListener('click', close);
   document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); prev(); });
   document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); next(); });
-
-  // click outside image to close
   overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
-
-  // keyboard
   document.addEventListener('keydown', (e) => {
     if (!overlay.classList.contains('active')) return;
     if (e.key === 'Escape') close();
