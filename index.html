@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>✦ Motherboards + Sarah Buckius ✦</title>
+<title>Sarah Buckius @ Motherboards</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -208,10 +208,29 @@
     background: rgba(255,45,107,.06);
   }
   .img-caption {
-    padding: 10px 12px 12px;
+    padding: 10px 12px 4px;
     font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--text-dim); line-height: 1.5; text-align: center;
   }
+  .img-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin: 6px auto 10px;
+    padding: 5px 12px; border-radius: 8px;
+    background: rgba(255,45,107,.1);
+    border: 1px solid var(--card-border-bright);
+    color: var(--candy); text-decoration: none;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
+    transition: all .18s cubic-bezier(.34,1.56,.64,1);
+  }
+  .img-link:hover {
+    background: rgba(255,45,107,.28);
+    color: var(--cream);
+    border-color: var(--hot);
+    transform: scale(1.05);
+    box-shadow: 0 3px 14px rgba(255,45,107,.25);
+  }
+  .img-link::after { content: ' ↗'; }
 
   /* Video cell */
   .video-cell {
@@ -477,7 +496,7 @@
       <div class="brand-icon">✦</div>
       <div>
         <div class="brand-name">Sarah Buckius ✦</div>
-        <div class="brand-sub">Digital Media · Video · Performance  · Textiles</div>
+        <div class="brand-sub">Digital Media Art · Performance · Textiles</div>
       </div>
     </div>
     <div class="nav-chips">
@@ -526,6 +545,7 @@
     <div class="img-cell">
       <img src="images/kitchen_computer_01.png" alt="Kitchen Computer Plushy 1" loading="lazy">
       <div class="img-caption">Kitchen Computer Plushy — view 01</div>
+      <a class="img-link" href="https://www.computerhistory.org/revolution/minicomputers/11/362" target="_blank" rel="noopener">View Original</a>
     </div>
     <div class="img-cell">
       <img src="images/kitchen_computer_02.png" alt="Kitchen Computer Plushy 2" loading="lazy">
