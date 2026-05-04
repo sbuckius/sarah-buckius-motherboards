@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>✦ Motherboards + Sarah Buckius ✦</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:    #ff5c8a;
+    --hot:     #ff2d6b;
+    --candy:   #ff85b3;
+    --blush:   #ffb3cf;
+    --bubble:  #ffe4f0;
+    --cream:   #fff5f8;
+    --berry:   #c4005a;
+    --maroon:  #6f001e;
+    --fuchsia: #ff1f80;
+    --bg:      #1a0012;
+    --card:    rgba(255,255,255,.055);
+    --card-border: rgba(255,160,200,.22);
+    --card-border-bright: rgba(255,100,160,.55);
+    --soft-glow: 0 4px 30px rgba(255,45,107,.2), 0 1px 0 rgba(255,160,200,.12) inset;
+    --pop-glow:  0 8px 50px rgba(255,45,107,.45), 0 0 100px rgba(255,30,128,.18);
+    --text-dim:  rgba(255,200,224,.55);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-family: 'Quicksand', sans-serif; font-weight: 600;
+    color: var(--cream);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 15%,  rgba(180,0,50,.4)   0%, transparent 55%),
+      radial-gradient(ellipse 60% 70% at 90% 85%,  rgba(120,0,30,.35)  0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 50% 50%,  rgba(255,45,107,.08) 0%, transparent 65%),
+      linear-gradient(160deg, #220008, #180008 45%, #120005);
+  }
+
+  .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(70px); }
+  .orb-1 { width:500px;height:500px;background:var(--maroon); opacity:.25; top:-120px; left:-100px; animation:drift1 20s ease-in-out infinite; }
+  .orb-2 { width:400px;height:400px;background:#c40032;        opacity:.2;  bottom:-80px; right:-80px; animation:drift2 24s ease-in-out infinite; }
+  .orb-3 { width:300px;height:300px;background:var(--hot);     opacity:.12; top:35%; left:55%;       animation:drift3 16s ease-in-out infinite; }
+  .orb-4 { width:200px;height:200px;background:var(--candy);   opacity:.15; top:10%; right:20%;      animation:drift2 19s ease-in-out infinite reverse; }
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,35px)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,-25px)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0)}33%{transform:translate(-25px,18px)}66%{transform:translate(18px,-12px)}}
+
+  .sparkles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+  .sp{position:absolute;opacity:0;animation:floatUp linear infinite;}
+  @keyframes floatUp{
+    0%  {opacity:0;transform:translateY(0) scale(.6) rotate(0deg)}
+    15% {opacity:.7}
+    85% {opacity:.4}
+    100%{opacity:0;transform:translateY(-140px) scale(1.1) rotate(180deg)}
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative; z-index: 10;
+    padding: 36px clamp(20px,6vw,80px) 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+
+  .nav-bar {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 48px; flex-wrap: wrap; gap: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-icon {
+    width:48px;height:48px;border-radius:14px;
+    background:linear-gradient(135deg,rgba(255,45,107,.3),rgba(180,0,50,.4));
+    border:1.5px solid var(--card-border-bright);
+    box-shadow:var(--soft-glow);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+    animation:wobble 4s ease-in-out infinite;
+  }
+  @keyframes wobble{0%,100%{transform:rotate(-2deg) scale(1)}25%{transform:rotate(1deg) scale(1.04)}50%{transform:rotate(-1deg) scale(1)}75%{transform:rotate(2deg) scale(1.03)}}
+  .brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;letter-spacing:.04em;background:linear-gradient(90deg,var(--blush),var(--fuchsia) 55%,var(--candy));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .brand-sub{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin-top:2px;}
+
+  .nav-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .nav-chip {
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(255,45,107,.08); border: 1px solid rgba(255,130,180,.2);
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-dim); font-family: 'Quicksand', sans-serif; font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 780px; margin: 0 auto 64px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 14px; border-radius: 999px;
+    background: rgba(255,45,107,.1); border: 1px solid rgba(255,130,180,.25);
+    font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--candy);
+  }
+  .hero-badge .pip { width:5px;height:5px;border-radius:50%;background:var(--hot);box-shadow:0 0 6px var(--hot);animation:breathe 2s ease-in-out infinite; }
+  @keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+  @keyframes headIdlePulse{
+    0%,100%{box-shadow:0 0 0 8px rgba(255,45,107,.06),0 8px 40px rgba(255,45,107,.35);transform:scale(1);}
+    50%{box-shadow:0 0 0 14px rgba(255,45,107,.12),0 8px 60px rgba(255,45,107,.55),0 0 80px rgba(255,30,128,.2);transform:scale(1.03);}
+  }
+  .hero-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(32px, 7vw, 60px); line-height: 1.15;
+    background: linear-gradient(120deg, var(--cream) 10%, var(--blush) 45%, var(--fuchsia) 80%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: -.02em;
+  }
+  .hero-subtitle {
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: clamp(16px, 3vw, 24px);
+    color: var(--candy); letter-spacing: .06em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: min(90vw, 600px); height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--card-border-bright) 30%, var(--hot) 50%, var(--card-border-bright) 70%, transparent);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(255,45,107,.3);
+    margin: 0 auto 48px;
+    position: relative; z-index: 10;
+  }
+
+  /* ── ARTWORK SECTIONS ── */
+  .artwork-section {
+    position: relative; z-index: 10;
+    max-width: 1100px; margin: 0 auto 80px;
+    padding: 0 clamp(16px,4vw,64px);
+  }
+
+  .artwork-header {
+    margin-bottom: 28px; text-align: center;
+  }
+  .artwork-num {
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--hot); font-family: 'Nunito', sans-serif; font-weight: 900;
+    margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .artwork-num::before, .artwork-num::after { content:'✦'; font-size:8px; opacity:.6; }
+  .artwork-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(20px, 3.5vw, 30px); line-height: 1.25;
+    background: linear-gradient(120deg, var(--cream) 10%, var(--blush) 50%, var(--fuchsia) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: -.01em; margin-bottom: 10px;
+  }
+  .artwork-type {
+    font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--text-dim); font-style: italic;
+  }
+
+  /* ── IMAGE GRID ── */
+  .img-grid {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .img-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .img-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .img-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  @media (max-width: 700px) {
+    .img-grid.cols-3,
+    .img-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 440px) {
+    .img-grid.cols-3,
+    .img-grid.cols-4,
+    .img-grid.cols-2 { grid-template-columns: 1fr; }
+  }
+
+  .img-cell {
+    display: flex; flex-direction: column;
+    border-radius: 16px; overflow: hidden;
+    background: rgba(15,0,8,.68);
+    border: 1.5px solid var(--card-border);
+    box-shadow: var(--soft-glow);
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  .img-cell:hover {
+    border-color: var(--card-border-bright);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 40px rgba(255,45,107,.3);
+  }
+  .img-cell img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    display: block;
+    background: rgba(255,45,107,.06);
+  }
+  .img-caption {
+    padding: 10px 12px 12px;
+    font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--text-dim); line-height: 1.5; text-align: center;
+  }
+
+  /* Video cell */
+  .video-cell {
+    border-radius: 16px; overflow: hidden;
+    background: rgba(15,0,8,.68);
+    border: 1.5px solid var(--card-border-bright);
+    box-shadow: var(--soft-glow);
+    margin-bottom: 14px;
+  }
+  .video-cell video {
+    width: 100%; display: block; max-height: 480px; object-fit: contain;
+    background: #0a0005;
+  }
+  .video-label {
+    padding: 10px 14px 12px; text-align: center;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── LINKS ── */
+  .artwork-links {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 24px;
+  }
+  .artwork-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255,45,107,.35), rgba(180,0,50,.45));
+    border: 1px solid rgba(255,45,107,.6);
+    box-shadow: 0 3px 14px rgba(255,45,107,.2);
+    color: var(--cream); text-decoration: none;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    transition: all .18s cubic-bezier(.34,1.56,.64,1);
+  }
+  .artwork-link:hover {
+    background: linear-gradient(135deg, rgba(255,45,107,.65), rgba(180,0,50,.75));
+    box-shadow: 0 6px 24px rgba(255,45,107,.45);
+    transform: translateY(-2px) scale(1.04);
+  }
+  .link-note {
+    font-size: 10px; letter-spacing: .12em;
+    color: var(--text-dim); font-style: italic;
+    align-self: center;
+  }
+
+  /* ── BODY TEXT ── */
+  .artwork-body {
+    background: rgba(15,0,8,.65);
+    border: 1.5px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: var(--soft-glow);
+    padding: clamp(20px,3vw,36px) clamp(20px,3vw,40px);
+    position: relative; overflow: hidden;
+  }
+  .artwork-body::before {
+    content:''; position:absolute; top:0; left:10%; right:10%; height:1.5px;
+    background: linear-gradient(90deg,transparent,var(--candy) 35%,var(--hot) 50%,var(--candy) 65%,transparent);
+    box-shadow: 0 0 12px var(--rose); border-radius:999px;
+  }
+  .artwork-body p {
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: rgba(255,200,224,.82);
+    line-height: 1.85;
+    letter-spacing: .02em;
+    margin-bottom: 16px;
+  }
+  .artwork-body p:last-child { margin-bottom: 0; }
+
+  /* poem / centered text block */
+  .poem-block {
+    text-align: center;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-style: italic;
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: var(--blush); line-height: 2;
+    padding: 16px 0 8px;
+    margin-bottom: 20px;
+  }
+
+  /* INFO label */
+  .info-label {
+    font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--hot); font-family: 'Nunito', sans-serif; font-weight: 900;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .info-label::before { content:'✦'; opacity:.6; }
+
+  /* ── EXHIBITION BANNER ── */
+  .exhibition-banner {
+    position: relative; z-index: 10;
+    max-width: 860px; margin: 0 auto 48px;
+    padding: 0 clamp(16px,4vw,64px);
+  }
+  .exhibition-card {
+    background: rgba(15,0,8,.75);
+    border: 1.5px solid var(--card-border-bright);
+    border-radius: 20px;
+    box-shadow: var(--soft-glow);
+    padding: clamp(22px,3.5vh,34px) clamp(24px,4vw,44px);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .exhibition-card::before {
+    content:''; position:absolute; top:0; left:8%; right:8%; height:1.5px;
+    background: linear-gradient(90deg,transparent,var(--candy) 35%,var(--hot) 50%,var(--candy) 65%,transparent);
+    box-shadow: 0 0 12px var(--rose); border-radius:999px;
+  }
+  .exhibition-eyebrow {
+    font-size: 9px; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--hot); font-family: 'Nunito', sans-serif; font-weight: 900;
+    margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .exhibition-eyebrow::before, .exhibition-eyebrow::after { content:'✦'; font-size:7px; opacity:.6; }
+  .exhibition-museum {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(15px, 2.5vw, 20px);
+    background: linear-gradient(120deg, var(--cream) 10%, var(--blush) 50%, var(--fuchsia) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: -.01em; margin-bottom: 6px;
+  }
+  .exhibition-dates {
+    font-size: clamp(11px, 1.5vw, 13px); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--candy); margin-bottom: 16px;
+  }
+  .exhibition-body {
+    font-size: clamp(12px, 1.5vw, 14px); color: var(--text-dim);
+    line-height: 1.75; margin-bottom: 22px;
+  }
+  .exhibition-body strong { color: var(--blush); font-weight: 700; }
+  .exhibition-links {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  }
+  .exhibition-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 8px 18px; border-radius: 12px;
+    background: rgba(255,45,107,.12);
+    border: 1px solid var(--card-border-bright);
+    color: var(--candy); text-decoration: none;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    transition: all .18s cubic-bezier(.34,1.56,.64,1);
+  }
+  .exhibition-link:hover {
+    background: rgba(255,45,107,.32);
+    color: var(--cream);
+    border-color: var(--hot);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 18px rgba(255,45,107,.3);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 10;
+    margin-top: 40px; padding: 0 20px 40px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .footer-divider {
+    width: min(90vw, 400px); height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border) 40%, var(--card-border) 60%, transparent);
+    margin-bottom: 20px;
+  }
+  .footer-text { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,160,200,.2); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(10,0,6,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center; justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-inner {
+    position: relative;
+    max-width: min(92vw, 1100px);
+    max-height: 90vh;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    cursor: default;
+  }
+  .lightbox-img {
+    max-width: 100%; max-height: 80vh;
+    object-fit: contain;
+    border-radius: 16px;
+    border: 1.5px solid var(--card-border-bright);
+    box-shadow: 0 0 60px rgba(255,45,107,.35), 0 0 120px rgba(255,30,128,.15);
+    animation: lbIn .22s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes lbIn {
+    from { transform: scale(.88); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  .lightbox-caption {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim); text-align: center;
+  }
+  .lightbox-close {
+    position: fixed; top: 20px; right: 24px;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,45,107,.2);
+    border: 1.5px solid var(--card-border-bright);
+    box-shadow: var(--soft-glow);
+    color: var(--cream); font-size: 20px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .18s ease;
+    z-index: 10000;
+  }
+  .lightbox-close:hover {
+    background: rgba(255,45,107,.55);
+    transform: scale(1.12) rotate(90deg);
+  }
+  /* nav arrows */
+  .lightbox-prev, .lightbox-next {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,45,107,.18);
+    border: 1.5px solid var(--card-border-bright);
+    color: var(--cream); font-size: 20px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .18s ease; z-index: 10000;
+  }
+  .lightbox-prev { left: 16px; }
+  .lightbox-next { right: 16px; }
+  .lightbox-prev:hover, .lightbox-next:hover {
+    background: rgba(255,45,107,.48);
+    transform: translateY(-50%) scale(1.1);
+  }
+  /* make images look clickable */
+  .img-cell img { cursor: zoom-in; }
+
+  /* section number label */
+  .section-label {
+    position: relative; z-index: 10;
+    text-align: center; margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .section-label::before, .section-label::after {
+    content: '✦'; margin: 0 10px;
+    color: var(--hot); opacity: .6; font-size: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="orb orb-4"></div>
+<div class="sparkles" id="sparkles"></div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="nav-bar">
+    <div class="brand">
+      <div class="brand-icon">✦</div>
+      <div>
+        <div class="brand-name">Sarah Buckius ✦</div>
+        <div class="brand-sub">Digital Media · Video · Performance  · Textiles</div>
+      </div>
+    </div>
+    <div class="nav-chips">
+      <div class="nav-chip">4 Artworks</div>
+      <div class="nav-chip">Motherboards</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-badge"><div class="pip"></div>Exhibition</div>
+    <h1 class="hero-title">Sarah Buckius</h1>
+    <div class="hero-subtitle">@ Motherboards</div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ── EXHIBITION BANNER ── -->
+<div class="exhibition-banner">
+  <div class="exhibition-card">
+    <div class="exhibition-eyebrow">Now on View</div>
+    <div class="exhibition-museum">San Jose Museum of Art</div>
+    <div class="exhibition-dates">April 2026 — January 2027</div>
+    <div class="exhibition-body">
+      The artwork below is on view at the San Jose Museum of Art for the <strong>Motherboards</strong> exhibition. The show is curated by <strong>Juan Omar Rodriguez</strong>.
+    </div>
+    <div class="exhibition-links">
+      <a class="exhibition-link" href="https://www.juanomarrodriguez.com/" target="_blank" rel="noopener">Juan Omar Rodriguez ↗</a>
+      <a class="exhibition-link" href="https://sjmusart.org/exhibition/motherboards" target="_blank" rel="noopener">SJMA · Motherboards ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">Artworks</div>
+
+<!-- ══════════════════════════════════════
+     ARTWORK 1 · Kitchen Computer Plushy
+══════════════════════════════════════ -->
+<div class="artwork-section">
+  <div class="artwork-header">
+    <div class="artwork-num">Artwork 01</div>
+    <div class="artwork-title">Kitchen Computer Plushy</div>
+  </div>
+
+  <div class="img-grid cols-3">
+    <div class="img-cell">
+      <img src="images/kitchen_computer_01.png" alt="Kitchen Computer Plushy 1" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 01</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/kitchen_computer_02.png" alt="Kitchen Computer Plushy 2" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 02</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/kitchen_computer_03.png" alt="Kitchen Computer Plushy 3" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 03</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/kitchen_computer_04.png" alt="Kitchen Computer Plushy 4" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 04</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/kitchen_computer_05.png" alt="Kitchen Computer Plushy 5" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 05</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/kitchen_computer_06.png" alt="Kitchen Computer Plushy 6" loading="lazy">
+      <div class="img-caption">Kitchen Computer Plushy — view 06</div>
+    </div>
+  </div>
+
+  <div class="artwork-links">
+    <a class="artwork-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+  </div>
+
+  <div class="artwork-body">
+    <p>In 1969, Honeywell introduced the Kitchen Computer, promoted with the tagline, "If only she can cook as well as Honeywell can compute." Marketed for $10,600, it was never sold, but its messaging embodied the era's gendered assumptions about technology and domesticity, prompting questions about the intersection of women, labor, and innovation.</p>
+    <p>As a mother of three, I witness my children's desire to join the plush toy craze—a phenomenon built on the invisible labor of marginalized women. Drawing on the economic, social, and technological systems in which these plushies exist, I reimagined the Kitchen Computer as a soft, plush object.</p>
+    <p>I constructed it from textiles designed using 3D models based on patents by women inventors from the late 1800s and early 1900s, most of which are textile designs. Translating fragments of these patents into digital collage patterns, I mirrored the logic of weaving: up and down, over and under, (0 and 1), pointing to underamplified connections between women's roles in computing and textile design. Transforming this hard-edged, seemingly functional computer into a soft, inviting plush subverts its original purpose and actually renders it useful, unlike the original! Transforming it from a computer to a toy highlights the absurdity of these cultural dynamics, while honoring the undervalued, dexterous labor of women who manufacture plush toys.</p>
+    <p>Despite advances in technology, AI and robotics still struggle with the unruly nature of cloth—a challenge known as the "floppy cloth problem." Even my own attempts to 3D-model the Kitchen Computer using AI failed, highlighting the irreplaceable value of human skill in textile creation and reminding us that women's labor remains essential to this system.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     ARTWORK 2 · If only she can cook…
+══════════════════════════════════════ -->
+<div class="artwork-section">
+  <div class="artwork-header">
+    <div class="artwork-num">Artwork 02</div>
+    <div class="artwork-title">If only she can cook as well as Honeywell can compute</div>
+    <div class="artwork-type">performance</div>
+  </div>
+
+  <div class="img-grid cols-2">
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_01.png" alt="If only she can cook 1" loading="lazy">
+      <div class="img-caption">Performance documentation — view 01</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_02.png" alt="If only she can cook 2" loading="lazy">
+      <div class="img-caption">Performance documentation — view 02</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_03.png" alt="If only she can cook 3" loading="lazy">
+      <div class="img-caption">Performance documentation — view 03</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/if_only_she_can_cook_04.png" alt="If only she can cook 4" loading="lazy">
+      <div class="img-caption">Performance documentation — view 04</div>
+    </div>
+  </div>
+
+  <div class="video-cell">
+    <video controls preload="metadata">
+      <source src="images/if_only_she_can_cook.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-label">Performance video documentation</div>
+  </div>
+
+  <div class="artwork-links">
+    <a class="artwork-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+  </div>
+
+  <div class="artwork-body">
+    <p>My performance, "If only she can cook as well as Honeywell can compute," reenacts the presentation labor of the woman from Honeywell's 1969 kitchen-computer advertisement, using The Kitchen Computer Plushy as a stand-in for the original device. Dressed in a red shirt and pants with a custom, faux-fur-trimmed apron—designed from textile patents by women—I embody the poised, serene figure from the ad, while the plushy highlights the intersection of technology, gender, and domestic labor.</p>
+    <p>For one hour, I stand beside the plushy, maintaining the woman's composed smile and tranquil stance from the original ad. Audio instructions can be heard from the computer, directing me to perform absurd, pseudocode-like output for coded directions I must follow. These directions were generated by prompting an AI to analyze the ad's representation of emotional and aesthetic labor and to provide performance instructions, which, as a result, are at once illuminating and absurd due to the AI's lack of understanding of context. Feeding the AI this imagery and prompt adds these voices to the training data, in an effort to address algorithmic bias in technology. This process both highlights the challenges of translating such labor into AI terms and exposes the limitations of automation in replicating women's work. When an instruction is impossible to perform, I return to the original pose, echoing the constraints faced by both human and machine. Throughout the performance, quieter readings of textile patents by women play underneath, weaving together the histories of invention, labor, and technology.</p>
+    <p>The work reveals a glaring example of how technology is not neutral and highlights the limitations of automating forms of human labor—especially those involving emotion and identity. Through reimagined reenactment, it exposes the persistent gender bias embedded in our technological landscape, becoming a mirror that reflects both the allure and the constraints of computer technologies.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     ARTWORK 3 · Carebots
+══════════════════════════════════════ -->
+<div class="artwork-section">
+  <div class="artwork-header">
+    <div class="artwork-num">Artwork 03</div>
+    <div class="artwork-title">Carebots</div>
+  </div>
+
+  <div class="img-grid cols-4">
+    <div class="img-cell">
+      <img src="images/carebots_01.png" alt="Carebots 1" loading="lazy">
+      <div class="img-caption">Carebot — 01</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_02.png" alt="Carebots 2" loading="lazy">
+      <div class="img-caption">Carebot — 02</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_03.png" alt="Carebots 3" loading="lazy">
+      <div class="img-caption">Carebot — 03</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_04.png" alt="Carebots 4" loading="lazy">
+      <div class="img-caption">Carebot — 04</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_05.png" alt="Carebots 5" loading="lazy">
+      <div class="img-caption">Carebot — 05</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_06.png" alt="Carebots 6" loading="lazy">
+      <div class="img-caption">Carebot — 06</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_07.png" alt="Carebots 7" loading="lazy">
+      <div class="img-caption">Carebot — 07</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/carebots_08.png" alt="Carebots 8" loading="lazy">
+      <div class="img-caption">Carebot — 08</div>
+    </div>
+  </div>
+
+  <div class="artwork-links">
+    <a class="artwork-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View All Carebots ↗</a>
+  </div>
+
+  <div class="artwork-body">
+    <div class="info-label">About Carebots</div>
+    <p>CAREBOTS are built from collaged digital bits of 1) patents by women for computation, textiles, sewing machines, typewriters, and garments, 2) photographs of human computers, 3) text from Woman as Inventor, and 4) images of women with computers. These digital amalgams are converted to 3D models by using digital technology in absurd ways to resist dominant cultural techno-paradigms such as technological determinism and the inevitable march of technological innovation without critical consideration of whether the technologies actually provide CARE to humans and the world.</p>
+    <p>The process that I devised involves my feeding found imagery into digital technology, thus converting it into numbers (code), which is then reconstructed as digital 3D models with digital hair (fiber). CAREBOTS point to interconnections among technology and biology, gender and labor, invention and creativity, and carework. The work amplifies the voices of innovators from history in textile work by referencing ancient technologies of weaving and textile, along with textile-related patents by women.</p>
+    <p>Blood, flowers, skin, pink consumer electronics, organs, cotton candy, flesh, glitter, bodily fluids, pink labor.</p>
+    <p>Referencing textile–computer histories, the Matilda Effect, and care in technological systems, CAREBOTS are science-fictional beings at the intersection of care and technology.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     ARTWORK 4 · The Mother of All Demos
+══════════════════════════════════════ -->
+<div class="artwork-section">
+  <div class="artwork-header">
+    <div class="artwork-num">Artwork 04</div>
+    <div class="artwork-title">The Mother of All Demos</div>
+    <div class="artwork-type">participatory multimedia performance</div>
+  </div>
+
+  <div class="img-grid cols-2">
+    <div class="img-cell">
+      <img src="images/the_mother_of_all_demos_01.png" alt="The Mother of All Demos 1" loading="lazy">
+      <div class="img-caption">The Mother of All Demos — view 01</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/the_mother_of_all_demos_02.png" alt="The Mother of All Demos 2" loading="lazy">
+      <div class="img-caption">The Mother of All Demos — view 02</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/the_mother_of_all_demos_03.png" alt="The Mother of All Demos 3" loading="lazy">
+      <div class="img-caption">The Mother of All Demos — view 03</div>
+    </div>
+    <div class="img-cell">
+      <img src="images/the_mother_of_all_demos_04.png" alt="The Mother of All Demos 4" loading="lazy">
+      <div class="img-caption">The Mother of All Demos — view 04</div>
+    </div>
+  </div>
+
+  <div class="artwork-links">
+    <a class="artwork-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener">View Project ↗</a>
+    <a class="artwork-link" href="https://care-tech.org" target="_blank" rel="noopener">care-tech.org ↗</a>
+    <span class="link-note">⚠ care-tech.org is under construction but can be accessed</span>
+  </div>
+
+  <div class="artwork-body">
+    <p>Step into a zany, participatory, multimedia performance by Motherboards exhibiting artist Sarah Buckius. Adopting the role of a tech CEO, Buckius will explore the roles of women in past and future technologies, from textile patents, to robot design, and artificial intelligence training.</p>
+
+    <div class="poem-block">
+      Tech CEOs, female robots,<br>
+      patents by women, AI…<br>
+      textile tech, domestic labor computation,<br>
+      babysitting bots, kilo-girls…<br>
+      —Oh my!
+    </div>
+
+    <p>Step into a zany, immersive, live, multimedia performance featuring a female tech CEO who embodies female-coded robots, memorializes patents by women for textiles and computation devices, performs AI-generated instructions for mechanized-hip-hop domestic labor, trains Mechanical Turks in DEI tasks, babysits unruly AI bots, dictates the 1870 article by Matilda Gage, "Woman as Inventor," and broadcasts the audio of Harlow Shapley, the "kilo-girls" fabricator.</p>
+    <p>This interactive experience (blending irony and sincerity, epic blunders and meager successes, chaotic messes and illogical order) will leave you questioning power structures in technology, past and present, pondering the Matilda Effect—the ongoing erasure and undervaluing of women's contributions in tech, and yearning for technology made with CARE for humans and the world.</p>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-divider"></div>
+  <div class="footer-text">✦ Sarah Buckius · Motherboards ✦</div>
+</footer>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lightbox-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lightbox-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lightbox-inner" id="lbInner">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ── Sparkles ──
+  const wrap = document.getElementById('sparkles');
+  const chars = ['✦','✧','♡','˚','·','✿','◦','❀','°'];
+  for (let i = 0; i < 32; i++) {
+    const s = document.createElement('span');
+    s.className = 'sp';
+    s.textContent = chars[Math.floor(Math.random() * chars.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.bottom = Math.random() * -80 + 'px';
+    s.style.fontSize = (9 + Math.random() * 12) + 'px';
+    s.style.color = `hsl(${310 + Math.random() * 50},75%,${65 + Math.random() * 25}%)`;
+    s.style.animationDuration = (7 + Math.random() * 14) + 's';
+    s.style.animationDelay = (Math.random() * 14) + 's';
+    wrap.appendChild(s);
+  }
+
+  // ── Lightbox ──
+  const overlay  = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbCap    = document.getElementById('lbCaption');
+  const lbInner  = document.getElementById('lbInner');
+
+  // Collect all grid images (not video thumbnails)
+  let allImgs = [];
+  let current = 0;
+
+  function buildIndex() {
+    allImgs = Array.from(document.querySelectorAll('.img-cell img'));
+    allImgs.forEach((img, i) => {
+      img.addEventListener('click', () => open(i));
+    });
+  }
+
+  function open(index) {
+    current = index;
+    show();
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function show() {
+    const img = allImgs[current];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    // get caption from sibling
+    const cell = img.closest('.img-cell');
+    const capEl = cell ? cell.querySelector('.img-caption') : null;
+    lbCap.textContent = capEl ? capEl.textContent : img.alt;
+    // reset animation
+    lbImg.style.animation = 'none';
+    requestAnimationFrame(() => { lbImg.style.animation = ''; });
+  }
+
+  function prev() { current = (current - 1 + allImgs.length) % allImgs.length; show(); }
+  function next() { current = (current + 1) % allImgs.length; show(); }
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+  document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); next(); });
+
+  // click outside image to close
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+
+  // keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft')  prev();
+    if (e.key === 'ArrowRight') next();
+  });
+
+  buildIndex();
+})();
+</script>
+</body>
+</html>
