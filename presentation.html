@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sarah Buckius @ Motherboards — Presentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hot:#ff2d6b; --candy:#ff85b3; --blush:#ffb3cf; --cream:#fff5f8;
+  --fuchsia:#ff1f80; --maroon:#6f001e; --bg:#1a0012;
+  --card-border:rgba(255,100,160,.45);
+  --text-dim:rgba(255,200,224,.6);
+  --text-body:rgba(255,200,224,.85);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Quicksand',sans-serif;}
+
+#pres{
+  width:100vw; height:100vh;
+  background:var(--bg);
+  position:relative; overflow:hidden;
+}
+.bg-fixed{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 15%, rgba(180,0,50,.45) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 90% 85%, rgba(120,0,30,.4) 0%, transparent 55%),
+    linear-gradient(160deg, #220008, #180008 45%, #120005);
+}
+
+/* SLIDES */
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:4vw 6vw;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .5s ease,transform .5s ease;
+  pointer-events:none;text-align:center;
+  z-index:1;
+}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:auto;}
+
+/* ── TEXT ELEMENTS ── */
+.eyebrow{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(9px,1vw,12px);letter-spacing:.26em;text-transform:uppercase;
+  color:var(--hot);margin-bottom:1.8%;
+}
+.eyebrow::before,.eyebrow::after{content:'✦';margin:0 7px;opacity:.6;font-size:.8em;}
+.slide-title{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(18px,4.5vw,52px);line-height:1.12;
+  background:linear-gradient(120deg,#fff5f8 10%,#ffb3cf 45%,#ff1f80 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  letter-spacing:-.02em;margin-bottom:1.5%;
+}
+.slide-sub{
+  font-size:clamp(10px,1.5vw,16px);color:#ff85b3;
+  letter-spacing:.06em;font-family:'Nunito',sans-serif;font-weight:700;
+  margin-bottom:1.5%;
+}
+.slide-body{
+  font-size:clamp(11px,1.2vw,14px);color:var(--text-body);
+  line-height:1.8;letter-spacing:.02em;max-width:80%;
+}
+.slide-body p{margin-bottom:1em;}
+.slide-body p:last-child{margin-bottom:0;}
+.slide-body em{color:var(--blush);}
+.slide-quote{
+  font-family:'Nunito',sans-serif;font-weight:700;font-style:italic;
+  font-size:clamp(11px,1.6vw,17px);color:var(--blush);line-height:1.65;
+  border-left:2.5px solid var(--hot);padding-left:2.5%;
+  margin:1.5% 0;text-align:left;max-width:75%;
+}
+.divider-line{
+  width:28%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--hot),transparent);
+  margin:1.8% auto;
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:1.8%;}
+.tag{
+  padding:3px 10px;border-radius:999px;
+  background:rgba(255,45,107,.14);border:1px solid rgba(255,100,160,.4);
+  font-size:clamp(8px,.85vw,10px);letter-spacing:.1em;text-transform:uppercase;color:#ff85b3;
+}
+.artwork-num{
+  font-size:clamp(8px,.9vw,10px);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--hot);font-family:'Nunito',sans-serif;font-weight:900;margin-bottom:.8%;
+}
+.artwork-num::before,.artwork-num::after{content:'✦';font-size:.8em;opacity:.6;margin:0 5px;}
+.poem{
+  font-family:'Nunito',sans-serif;font-weight:700;font-style:italic;
+  font-size:clamp(10px,1.5vw,15px);color:var(--blush);line-height:2.1;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:4px 14px;border-radius:999px;
+  background:rgba(255,45,107,.12);border:1px solid rgba(255,130,180,.28);
+  font-size:clamp(8px,.9vw,10px);letter-spacing:.18em;text-transform:uppercase;
+  color:#ff85b3;margin-bottom:2%;
+}
+.pip{width:5px;height:5px;border-radius:50%;background:var(--hot);animation:breathe 2s ease-in-out infinite;}
+@keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.6)}}
+
+/* Exhibition card */
+.exh-card{
+  background:rgba(15,0,8,.72);border:1px solid var(--card-border);
+  border-radius:16px;padding:3% 5%;max-width:76%;width:100%;
+  position:relative;overflow:hidden;
+}
+.exh-card::before{
+  content:'';position:absolute;top:0;left:8%;right:8%;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--candy) 35%,var(--hot) 50%,var(--candy) 65%,transparent);
+  border-radius:999px;
+}
+.exh-museum{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(14px,2.4vw,22px);
+  background:linear-gradient(120deg,#fff5f8 10%,#ffb3cf 50%,#ff1f80 85%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:.8%;
+}
+.exh-dates{font-size:clamp(9px,1.1vw,12px);letter-spacing:.15em;text-transform:uppercase;color:#ff85b3;margin-bottom:1.8%;}
+.exh-body{font-size:clamp(9px,1.05vw,11px);color:var(--text-dim);line-height:1.75;}
+.exh-body strong{color:var(--blush);}
+
+/* ── OVERVIEW SLIDES (all images + summary) ── */
+.overview-slide{padding:2% 3%;}
+.overview-top{margin-bottom:1.5%;display:flex;flex-direction:column;align-items:center;}
+.overview-summary{
+  font-size:clamp(9px,1.05vw,12px);color:var(--text-dim);
+  max-width:80%;line-height:1.6;margin-top:.8%;
+}
+
+/* The image grid for overviews fills remaining space */
+.ov-grid{
+  display:grid;gap:5px;
+  width:100%;
+}
+.ov-grid.g2{grid-template-columns:repeat(2,1fr);}
+.ov-grid.g3{grid-template-columns:repeat(3,1fr);}
+.ov-grid.g4{grid-template-columns:repeat(4,1fr);}
+.ov-grid.g6{grid-template-columns:repeat(6,1fr);}
+.ov-cell{
+  background:#08000d;border-radius:6px;overflow:hidden;
+  border:1px solid rgba(255,100,160,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.ov-cell img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* ── FULL-IMAGE SLIDES ── */
+.img-slide{padding:0;}
+.img-header{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  padding:1.5% 4% 1%;
+  background:linear-gradient(to bottom,rgba(26,0,18,.96) 55%,transparent);
+  display:flex;flex-direction:column;align-items:center;
+}
+.full-grid{
+  position:absolute;inset:0;display:grid;gap:4px;z-index:1;
+}
+.full-grid.g1{grid-template-columns:1fr;}
+.full-grid.g2{grid-template-columns:repeat(2,1fr);}
+.full-grid.g3{grid-template-columns:repeat(3,1fr);}
+.full-grid.g4{grid-template-columns:repeat(4,1fr);}
+.full-grid.has-header{padding-top:18%;}
+.full-cell{
+  background:#08000d;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.full-cell img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* ── TEXT SLIDES ── */
+.text-slide{
+  align-items:flex-start;text-align:left;
+  padding:4% 7%;overflow:hidden;
+}
+.text-scroll{
+  width:100%;max-height:72vh;
+  overflow-y:auto;padding-right:1%;
+}
+.text-scroll::-webkit-scrollbar{width:4px;}
+.text-scroll::-webkit-scrollbar-track{background:rgba(255,100,160,.05);}
+.text-scroll::-webkit-scrollbar-thumb{background:rgba(255,45,107,.35);border-radius:2px;}
+.text-slide .artwork-num,.text-slide .slide-title{align-self:flex-start;}
+
+/* ── VIDEO SLIDE ── */
+.video-slide{padding:2.5% 4%;}
+.video-wrap{
+  width:86%;border-radius:12px;overflow:hidden;
+  border:1.5px solid var(--card-border);background:#0a0005;
+}
+.video-wrap iframe{display:block;width:100%;aspect-ratio:16/9;border:none;}
+.video-label{font-size:clamp(8px,.85vw,10px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,160,200,.45);margin-top:1.2%;}
+
+/* ── LINKS ── */
+.slide-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:1.4%;}
+.slide-link{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 14px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(255,45,107,.3),rgba(180,0,50,.38));
+  border:1px solid rgba(255,45,107,.55);
+  color:var(--cream);text-decoration:none;
+  font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:clamp(8px,.9vw,10px);letter-spacing:.1em;text-transform:uppercase;
+  transition:all .18s cubic-bezier(.34,1.56,.64,1);
+}
+.slide-link:hover{
+  background:linear-gradient(135deg,rgba(255,45,107,.6),rgba(180,0,50,.7));
+  box-shadow:0 4px 18px rgba(255,45,107,.35);
+  transform:translateY(-2px) scale(1.04);
+}
+.slide-link-note{
+  font-size:clamp(7px,.8vw,9px);letter-spacing:.1em;
+  color:var(--text-dim);font-style:italic;align-self:center;
+}
+
+/* ── CONTROLS ── */
+#controls{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 18px;
+  background:rgba(8,0,10,.9);
+  border-top:1px solid rgba(255,100,160,.18);
+  backdrop-filter:blur(8px);
+}
+.ctrl-btn{
+  background:rgba(255,45,107,.14);border:1px solid rgba(255,100,160,.38);
+  border-radius:8px;color:#ff85b3;
+  font-family:'Quicksand',sans-serif;font-weight:700;font-size:12px;
+  padding:5px 15px;cursor:pointer;transition:all .15s ease;
+  white-space:nowrap;
+}
+.ctrl-btn:hover{background:rgba(255,45,107,.34);color:#fff5f8;}
+.ctrl-btn:disabled{opacity:.3;cursor:default;}
+.progress-wrap{display:flex;gap:5px;align-items:center;flex-wrap:wrap;max-width:60%;justify-content:center;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,100,160,.25);cursor:pointer;transition:all .18s ease;flex-shrink:0;}
+.dot.on{background:var(--hot);transform:scale(1.45);}
+.dot.section{background:rgba(255,100,160,.5);}
+.slide-counter{font-size:11px;color:rgba(255,160,200,.38);font-family:'Quicksand',sans-serif;font-weight:600;letter-spacing:.08em;min-width:48px;text-align:right;}
+.play-btn{background:none;border:none;cursor:pointer;color:#ff85b3;font-size:16px;padding:3px 8px;transition:color .15s;}
+.play-btn:hover{color:#fff5f8;}
+.section-label-ctrl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,160,200,.35);font-family:'Quicksand',sans-serif;min-width:120px;}
+</style>
+</head>
+<body>
+<div id="pres">
+<div class="bg-fixed"></div>
+
+<!-- ══ SLIDE 0: TITLE ══ -->
+<div class="slide active" id="s0">
+  <div class="pill"><div class="pip"></div>Exhibition</div>
+  <div class="slide-title" style="font-size:clamp(28px,6vw,64px);">Sarah Buckius</div>
+  <div class="slide-sub" style="font-size:clamp(13px,2vw,20px);">@ Motherboards</div>
+  <div class="divider-line"></div>
+  <div class="slide-body">Digital Media Art · Performance · Textiles</div>
+</div>
+
+<!-- ══ SLIDE 1: EXHIBITION INFO ══ -->
+<div class="slide" id="s1">
+  <div class="eyebrow">Now on View</div>
+  <div class="exh-card">
+    <div class="exh-museum">San Jose Museum of Art</div>
+    <div class="exh-dates">April 2026 — January 2027</div>
+    <div class="exh-body">
+      The artwork is on view at the San Jose Museum of Art for the <strong>Motherboards</strong> exhibition,
+      curated by <strong>Juan Omar Rodriguez</strong>.
+    </div>
+  </div>
+  <div class="slide-links">
+    <a class="slide-link" href="https://sjmusart.org/exhibition/motherboards" target="_blank" rel="noopener">SJMA · Motherboards ↗</a>
+    <a class="slide-link" href="https://www.juanomarrodriguez.com/" target="_blank" rel="noopener">Juan Omar Rodriguez ↗</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ARTWORK 01 · Kitchen Computer Plushy
+══════════════════════════════════════ -->
+
+<!-- SLIDE 2: AW01 OVERVIEW (all 6 images + summary) -->
+<div class="slide overview-slide" id="s2">
+  <div class="overview-top">
+    <div class="artwork-num">Artwork 01</div>
+    <div class="slide-title" style="font-size:clamp(14px,2.8vw,28px);margin-bottom:.5%;">Kitchen Computer Plushy</div>
+    <div class="overview-summary">Honeywell's 1969 Kitchen Computer — reimagined as a soft, plush object constructed from textile patents by women inventors, subverting its original purpose to render it actually useful.</div>
+    <div class="slide-links">
+      <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+    </div>
+  </div>
+  <div class="ov-grid g6" style="height:58%;">
+    <div class="ov-cell"><img src="images/kitchen_computer_01.png" alt="Kitchen Computer 1"></div>
+    <div class="ov-cell"><img src="images/kitchen_computer_02.png" alt="Kitchen Computer 2"></div>
+    <div class="ov-cell"><img src="images/kitchen_computer_03.png" alt="Kitchen Computer 3"></div>
+    <div class="ov-cell"><img src="images/kitchen_computer_04.png" alt="Kitchen Computer 4"></div>
+    <div class="ov-cell"><img src="images/kitchen_computer_05.png" alt="Kitchen Computer 5"></div>
+    <div class="ov-cell"><img src="images/kitchen_computer_06.png" alt="Kitchen Computer 6"></div>
+  </div>
+</div>
+
+<!-- SLIDE 3: AW01 FULL TEXT -->
+<div class="slide text-slide" id="s3">
+  <div class="artwork-num">Artwork 01</div>
+  <div class="slide-title" style="font-size:clamp(13px,2.2vw,22px);margin-bottom:1.5%;">Kitchen Computer Plushy</div>
+  <div class="text-scroll">
+    <div class="slide-body" style="max-width:100%;">
+      <p>In 1969, Honeywell introduced the Kitchen Computer, promoted with the tagline, "If only she can cook as well as Honeywell can compute." Marketed for $10,600, it was never sold, but its messaging embodied the era's gendered assumptions about technology and domesticity, prompting questions about the intersection of women, labor, and innovation.</p>
+      <p>As a mother of three, I witness my children's desire to join the plush toy craze—a phenomenon built on the invisible labor of marginalized women. Drawing on the economic, social, and technological systems in which these plushies exist, I reimagined the Kitchen Computer as a soft, plush object.</p>
+      <p>I constructed it from textiles designed using 3D models based on patents by women inventors from the late 1800s and early 1900s, most of which are textile designs. Translating fragments of these patents into digital collage patterns, I mirrored the logic of weaving: up and down, over and under, (0 and 1), pointing to underamplified connections between women's roles in computing and textile design. Transforming this hard-edged, seemingly functional computer into a soft, inviting plush subverts its original purpose and actually renders it useful, unlike the original! Transforming it from a computer to a toy highlights the absurdity of these cultural dynamics, while honoring the undervalued, dexterous labor of women who manufacture plush toys.</p>
+      <p>Despite advances in technology, AI and robotics still struggle with the unruly nature of cloth—a challenge known as the "floppy cloth problem." Even my own attempts to 3D-model the Kitchen Computer using AI failed, highlighting the irreplaceable value of human skill in textile creation and reminding us that women's labor remains essential to this system.</p>
+    </div>
+  </div>
+  <div class="tag-row" style="width:100%;margin-top:1.2%;">
+    <div class="tag">Patents by Women</div><div class="tag">Textile Design</div><div class="tag">Domestic Labor</div><div class="tag">Floppy Cloth Problem</div><div class="tag">Plush Toys</div>
+  </div>
+  <div class="slide-links">
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+  </div>
+</div>
+
+<!-- SLIDE 4: AW01 IMAGES 1–3 (large) -->
+<div class="slide img-slide" id="s4">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 01</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Kitchen Computer Plushy</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+  </div>
+  <div class="full-grid g3 has-header">
+    <div class="full-cell"><img src="images/kitchen_computer_01.png" alt="Kitchen Computer 1"></div>
+    <div class="full-cell"><img src="images/kitchen_computer_02.png" alt="Kitchen Computer 2"></div>
+    <div class="full-cell"><img src="images/kitchen_computer_03.png" alt="Kitchen Computer 3"></div>
+  </div>
+</div>
+
+<!-- SLIDE 5: AW01 IMAGES 4–6 (large) -->
+<div class="slide img-slide" id="s5">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 01</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Kitchen Computer Plushy</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+  </div>
+  <div class="full-grid g3 has-header">
+    <div class="full-cell"><img src="images/kitchen_computer_04.png" alt="Kitchen Computer 4"></div>
+    <div class="full-cell"><img src="images/kitchen_computer_05.png" alt="Kitchen Computer 5"></div>
+    <div class="full-cell"><img src="images/kitchen_computer_06.png" alt="Kitchen Computer 6"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ARTWORK 02 · If only she can cook…
+══════════════════════════════════════ -->
+
+<!-- SLIDE 6: AW02 OVERVIEW -->
+<div class="slide overview-slide" id="s6">
+  <div class="overview-top">
+    <div class="artwork-num">Artwork 02</div>
+    <div class="slide-title" style="font-size:clamp(12px,2.4vw,24px);margin-bottom:.5%;">If only she can cook as well as Honeywell can compute</div>
+    <div class="slide-sub" style="margin-bottom:.5%;">performance</div>
+    <div class="overview-summary">A one-hour reenactment of Honeywell's 1969 advertisement — standing beside the Kitchen Computer Plushy while AI-generated audio instructions direct absurd, pseudocode-like actions.</div>
+    <div class="slide-links">
+      <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+    </div>
+  </div>
+  <div class="ov-grid g6" style="height:52%;">
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_01.png" alt="Performance 1"></div>
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_02.png" alt="Performance 2"></div>
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_03.png" alt="Performance 3"></div>
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_04.png" alt="Performance 4"></div>
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_05.png" alt="Performance 5"></div>
+    <div class="ov-cell"><img src="images/if_only_she_can_cook_06.png" alt="Performance 6"></div>
+  </div>
+</div>
+
+<!-- SLIDE 7: AW02 FULL TEXT -->
+<div class="slide text-slide" id="s7">
+  <div class="artwork-num">Artwork 02</div>
+  <div class="slide-title" style="font-size:clamp(11px,1.8vw,18px);margin-bottom:1.5%;">If only she can cook as well as Honeywell can compute</div>
+  <div class="text-scroll">
+    <div class="slide-body" style="max-width:100%;">
+      <p>My performance, "If only she can cook as well as Honeywell can compute," reenacts the presentation labor of the woman from Honeywell's 1969 kitchen-computer advertisement, using The Kitchen Computer Plushy as a stand-in for the original device. Dressed in a red shirt and pants with a custom, faux-fur-trimmed apron—designed from textile patents by women—I embody the poised, serene figure from the ad, while the plushy highlights the intersection of technology, gender, and domestic labor.</p>
+      <p>For one hour, I stand beside the plushy, maintaining the woman's composed smile and tranquil stance from the original ad. Audio instructions can be heard from the computer, directing me to perform absurd, pseudocode-like output for coded directions I must follow. These directions were generated by prompting an AI to analyze the ad's representation of emotional and aesthetic labor and to provide performance instructions, which, as a result, are at once illuminating and absurd due to the AI's lack of understanding of context. Feeding the AI this imagery and prompt adds these voices to the training data, in an effort to address algorithmic bias in technology. This process both highlights the challenges of translating such labor into AI terms and exposes the limitations of automation in replicating women's work. When an instruction is impossible to perform, I return to the original pose, echoing the constraints faced by both human and machine. Throughout the performance, quieter readings of textile patents by women play underneath, weaving together the histories of invention, labor, and technology.</p>
+      <p>The work reveals a glaring example of how technology is not neutral and highlights the limitations of automating forms of human labor—especially those involving emotion and identity. Through reimagined reenactment, it exposes the persistent gender bias embedded in our technological landscape, becoming a mirror that reflects both the allure and the constraints of computer technologies.</p>
+    </div>
+  </div>
+  <div class="tag-row" style="width:100%;margin-top:1.2%;">
+    <div class="tag">Reenactment</div><div class="tag">AI-Generated Instructions</div><div class="tag">Presentation Labor</div><div class="tag">Algorithmic Bias</div><div class="tag">Textile Patents</div>
+  </div>
+  <div class="slide-links">
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener">View Project ↗</a>
+  </div>
+</div>
+
+<!-- SLIDE 8: AW02 IMAGES 1–3 (large) -->
+<div class="slide img-slide" id="s8">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 02</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Performance Documentation</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+  </div>
+  <div class="full-grid g3 has-header">
+    <div class="full-cell"><img src="images/if_only_she_can_cook_01.png" alt="Performance 1"></div>
+    <div class="full-cell"><img src="images/if_only_she_can_cook_02.png" alt="Performance 2"></div>
+    <div class="full-cell"><img src="images/if_only_she_can_cook_03.png" alt="Performance 3"></div>
+  </div>
+</div>
+
+<!-- SLIDE 9: AW02 IMAGES 4–6 (large) -->
+<div class="slide img-slide" id="s9">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 02</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Performance Documentation</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/kitchen-computer-plushy.html" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+  </div>
+  <div class="full-grid g3 has-header">
+    <div class="full-cell"><img src="images/if_only_she_can_cook_04.png" alt="Performance 4"></div>
+    <div class="full-cell"><img src="images/if_only_she_can_cook_05.png" alt="Performance 5"></div>
+    <div class="full-cell"><img src="images/if_only_she_can_cook_06.png" alt="Performance 6"></div>
+  </div>
+</div>
+
+<!-- SLIDE 10: AW02 VIDEO -->
+<div class="slide video-slide" id="s10">
+  <div class="artwork-num">Artwork 02</div>
+  <div class="slide-title" style="font-size:clamp(10px,1.6vw,15px);margin-bottom:1.5%;">Performance Video</div>
+  <div class="video-wrap">
+    <iframe src="https://player.vimeo.com/video/1189197801?h=04be5f34f6&color=ff2d6b&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="video-label">If only she can cook as well as Honeywell can compute</div>
+</div>
+
+<!-- ══════════════════════════════════
+     ARTWORK 03 · Carebots
+══════════════════════════════════════ -->
+
+<!-- SLIDE 11: AW03 OVERVIEW -->
+<div class="slide overview-slide" id="s11">
+  <div class="overview-top">
+    <div class="artwork-num">Artwork 03</div>
+    <div class="slide-title" style="font-size:clamp(14px,2.8vw,28px);margin-bottom:.5%;">Carebots</div>
+    <div class="overview-summary">Science-fictional 3D beings built from collaged patents by women, photographs of human computers, and images of women with technology — at the intersection of care, labor, and invention.</div>
+    <div class="slide-links">
+      <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View All Carebots ↗</a>
+    </div>
+  </div>
+  <div class="ov-grid g4" style="height:58%;">
+    <div class="ov-cell"><img src="images/carebots_01.png" alt="Carebot 1"></div>
+    <div class="ov-cell"><img src="images/carebots_02.png" alt="Carebot 2"></div>
+    <div class="ov-cell"><img src="images/carebots_03.png" alt="Carebot 3"></div>
+    <div class="ov-cell"><img src="images/carebots_04.png" alt="Carebot 4"></div>
+    <div class="ov-cell"><img src="images/carebots_05.png" alt="Carebot 5"></div>
+    <div class="ov-cell"><img src="images/carebots_06.png" alt="Carebot 6"></div>
+    <div class="ov-cell"><img src="images/carebots_07.png" alt="Carebot 7"></div>
+    <div class="ov-cell"><img src="images/carebots_08.png" alt="Carebot 8"></div>
+  </div>
+</div>
+
+<!-- SLIDE 12: AW03 FULL TEXT -->
+<div class="slide text-slide" id="s12">
+  <div class="artwork-num">Artwork 03</div>
+  <div class="slide-title" style="font-size:clamp(13px,2.2vw,22px);margin-bottom:1.5%;">Carebots</div>
+  <div class="text-scroll">
+    <div class="slide-body" style="max-width:100%;">
+      <p>CAREBOTS are built from collaged digital bits of 1) patents by women for computation, textiles, sewing machines, typewriters, and garments, 2) photographs of human computers, 3) text from Woman as Inventor, and 4) images of women with computers. These digital amalgams are converted to 3D models by using digital technology in absurd ways to resist dominant cultural techno-paradigms such as technological determinism and the inevitable march of technological innovation without critical consideration of whether the technologies actually provide CARE to humans and the world.</p>
+      <p>The process that I devised involves my feeding found imagery into digital technology, thus converting it into numbers (code), which is then reconstructed as digital 3D models with digital hair (fiber). CAREBOTS point to interconnections among technology and biology, gender and labor, invention and creativity, and carework. The work amplifies the voices of innovators from history in textile work by referencing ancient technologies of weaving and textile, along with textile-related patents by women.</p>
+      <p>Blood, flowers, skin, pink consumer electronics, organs, cotton candy, flesh, glitter, bodily fluids, pink labor.</p>
+      <p>Referencing textile–computer histories, the Matilda Effect, and care in technological systems, CAREBOTS are science-fictional beings at the intersection of care and technology.</p>
+    </div>
+  </div>
+  <div class="tag-row" style="width:100%;margin-top:1.2%;">
+    <div class="tag">Matilda Effect</div><div class="tag">Textile–Computer Histories</div><div class="tag">3D Models</div><div class="tag">Digital Hair / Fiber</div><div class="tag">Pink Labor</div><div class="tag">Care in Tech</div>
+  </div>
+  <div class="slide-links">
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener">View All Carebots ↗</a>
+  </div>
+</div>
+
+<!-- SLIDE 13: AW03 IMAGES 1–4 (large) -->
+<div class="slide img-slide" id="s13">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 03</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Carebots</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener" style="margin-top:0;">View All Carebots ↗</a>
+  </div>
+  <div class="full-grid g4 has-header">
+    <div class="full-cell"><img src="images/carebots_01.png" alt="Carebot 1"></div>
+    <div class="full-cell"><img src="images/carebots_02.png" alt="Carebot 2"></div>
+    <div class="full-cell"><img src="images/carebots_03.png" alt="Carebot 3"></div>
+    <div class="full-cell"><img src="images/carebots_04.png" alt="Carebot 4"></div>
+  </div>
+</div>
+
+<!-- SLIDE 14: AW03 IMAGES 5–8 (large) -->
+<div class="slide img-slide" id="s14">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 03</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">Carebots</div>
+    <a class="slide-link" href="https://sbuckius.github.io/if-carebot-research/carebots-all.html" target="_blank" rel="noopener" style="margin-top:0;">View All Carebots ↗</a>
+  </div>
+  <div class="full-grid g4 has-header">
+    <div class="full-cell"><img src="images/carebots_05.png" alt="Carebot 5"></div>
+    <div class="full-cell"><img src="images/carebots_06.png" alt="Carebot 6"></div>
+    <div class="full-cell"><img src="images/carebots_07.png" alt="Carebot 7"></div>
+    <div class="full-cell"><img src="images/carebots_08.png" alt="Carebot 8"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ARTWORK 04 · The Mother of All Demos
+══════════════════════════════════════ -->
+
+<!-- SLIDE 15: AW04 OVERVIEW -->
+<div class="slide overview-slide" id="s15">
+  <div class="overview-top">
+    <div class="artwork-num">Artwork 04</div>
+    <div class="slide-title" style="font-size:clamp(13px,2.6vw,26px);margin-bottom:.5%;">The Mother of All Demos</div>
+    <div class="slide-sub" style="margin-bottom:.5%;">participatory multimedia performance</div>
+    <div class="overview-summary">A zany, immersive live performance where Sarah Buckius adopts the role of a tech CEO to explore women's roles in past and future technologies — from textile patents to robot design to AI training.</div>
+    <div class="slide-links">
+      <a class="slide-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener">View Project ↗</a>
+      <a class="slide-link" href="https://care-tech.org" target="_blank" rel="noopener">care-tech.org ↗</a>
+      <span class="slide-link-note">⚠ care-tech.org is under construction but can be accessed</span>
+    </div>
+  </div>
+  <div class="ov-grid g6" style="height:52%;">
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_01.png" alt="Mother of All Demos 1"></div>
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_02.png" alt="Mother of All Demos 2"></div>
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_03.png" alt="Mother of All Demos 3"></div>
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_04.png" alt="Mother of All Demos 4"></div>
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_05.png" alt="Mother of All Demos 5"></div>
+    <div class="ov-cell"><img src="images/the_mother_of_all_demos_06.png" alt="Mother of All Demos 6"></div>
+  </div>
+</div>
+
+<!-- SLIDE 16: AW04 FULL TEXT -->
+<div class="slide text-slide" id="s16">
+  <div class="artwork-num">Artwork 04</div>
+  <div class="slide-title" style="font-size:clamp(12px,2vw,20px);margin-bottom:1.5%;">The Mother of All Demos</div>
+  <div class="text-scroll">
+    <div class="slide-body" style="max-width:100%;">
+      <p>Step into a zany, participatory, multimedia performance by Motherboards exhibiting artist Sarah Buckius. Adopting the role of a tech CEO, Buckius will explore the roles of women in past and future technologies, from textile patents, to robot design, and artificial intelligence training.</p>
+      <div class="poem" style="margin:1.2em 0;font-size:clamp(10px,1.3vw,13px);">
+        Tech CEOs, female robots,<br>
+        patents by women, AI…<br>
+        textile tech, domestic labor computation,<br>
+        babysitting bots, kilo-girls…<br>
+        —Oh my!
+      </div>
+      <p>Step into a zany, immersive, live, multimedia performance featuring a female tech CEO who embodies female-coded robots, memorializes patents by women for textiles and computation devices, performs AI-generated instructions for mechanized-hip-hop domestic labor, trains Mechanical Turks in DEI tasks, babysits unruly AI bots, dictates the 1870 article by Matilda Gage, "Woman as Inventor," and broadcasts the audio of Harlow Shapley, the "kilo-girls" fabricator.</p>
+      <p>This interactive experience (blending irony and sincerity, epic blunders and meager successes, chaotic messes and illogical order) will leave you questioning power structures in technology, past and present, pondering the Matilda Effect—the ongoing erasure and undervaluing of women's contributions in tech, and yearning for technology made with CARE for humans and the world.</p>
+    </div>
+  </div>
+  <div class="tag-row" style="width:100%;margin-top:1.2%;">
+    <div class="tag">Matilda Effect</div><div class="tag">Tech CEO</div><div class="tag">Mechanical Turk</div><div class="tag">Kilo-Girls</div><div class="tag">Woman as Inventor</div><div class="tag">AI Training</div>
+  </div>
+  <div class="slide-links">
+    <a class="slide-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener">View Project ↗</a>
+    <a class="slide-link" href="https://care-tech.org" target="_blank" rel="noopener">care-tech.org ↗</a>
+    <span class="slide-link-note">⚠ care-tech.org is under construction but can be accessed</span>
+  </div>
+</div>
+
+<!-- SLIDE 17: AW04 IMAGES 1–2 (large) -->
+<div class="slide img-slide" id="s17">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 04</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">The Mother of All Demos</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+      <a class="slide-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+      <a class="slide-link" href="https://care-tech.org" target="_blank" rel="noopener" style="margin-top:0;">care-tech.org ↗</a>
+    </div>
+  </div>
+  <div class="full-grid g2 has-header">
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_01.png" alt="Mother of All Demos 1"></div>
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_02.png" alt="Mother of All Demos 2"></div>
+  </div>
+</div>
+
+<!-- SLIDE 18: AW04 IMAGES 3–4 (large) -->
+<div class="slide img-slide" id="s18">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 04</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">The Mother of All Demos</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+      <a class="slide-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+      <a class="slide-link" href="https://care-tech.org" target="_blank" rel="noopener" style="margin-top:0;">care-tech.org ↗</a>
+    </div>
+  </div>
+  <div class="full-grid g2 has-header">
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_03.png" alt="Mother of All Demos 3"></div>
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_04.png" alt="Mother of All Demos 4"></div>
+  </div>
+</div>
+
+<!-- SLIDE 19: AW04 IMAGES 5–6 (large) -->
+<div class="slide img-slide" id="s19">
+  <div class="img-header">
+    <div class="artwork-num">Artwork 04</div>
+    <div class="slide-title" style="font-size:clamp(10px,1.6vw,14px);margin-bottom:.4%;">The Mother of All Demos</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+      <a class="slide-link" href="https://sbuckius.github.io/mother-of-all-demos/" target="_blank" rel="noopener" style="margin-top:0;">View Project ↗</a>
+      <a class="slide-link" href="https://care-tech.org" target="_blank" rel="noopener" style="margin-top:0;">care-tech.org ↗</a>
+    </div>
+  </div>
+  <div class="full-grid g2 has-header">
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_05.png" alt="Mother of All Demos 5"></div>
+    <div class="full-cell"><img src="images/the_mother_of_all_demos_06.png" alt="Mother of All Demos 6"></div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 20: CLOSING ══ -->
+<div class="slide" id="s20">
+  <div class="eyebrow">Sarah Buckius</div>
+  <div class="slide-title" style="font-size:clamp(15px,3.2vw,34px);">Yearning for technology made with CARE<br>for humans and the world.</div>
+  <div class="divider-line"></div>
+  <div class="tag-row">
+    <div class="tag">Matilda Effect</div><div class="tag">Gender + Technology</div><div class="tag">Human Labor</div><div class="tag">Care</div><div class="tag">Invention</div><div class="tag">Textile Histories</div>
+  </div>
+  <div class="slide-body" style="margin-top:2%;color:rgba(255,160,200,.45);">San Jose Museum of Art · April 2026 — January 2027</div>
+</div>
+
+</div><!-- /pres -->
+
+<!-- CONTROLS -->
+<div id="controls">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="ctrl-btn" id="prevBtn" disabled>‹ Prev</button>
+    <span class="section-label-ctrl" id="secLabel">Intro</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="play-btn" id="playBtn">▶</button>
+    <div class="progress-wrap" id="dots"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="slide-counter" id="counter">1 / 21</span>
+    <button class="ctrl-btn" id="nextBtn">Next ›</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var total = 21;
+  var cur = 0;
+  var playing = false;
+  var timer = null;
+  var INTERVAL = 6000;
+
+  var sectionNames = [
+    'Intro','Exhibition Info',
+    'AW01 Overview','AW01 Text','AW01 Images','AW01 Images',
+    'AW02 Overview','AW02 Text','AW02 Images','AW02 Images','AW02 Video',
+    'AW03 Overview','AW03 Text','AW03 Images','AW03 Images',
+    'AW04 Overview','AW04 Text','AW04 Images','AW04 Images','AW04 Images',
+    'Closing'
+  ];
+
+  var slides = [];
+  for(var i=0;i<total;i++) slides.push(document.getElementById('s'+i));
+
+  var dotsEl = document.getElementById('dots');
+  var dots = [];
+  for(var i=0;i<total;i++){
+    var d = document.createElement('div');
+    d.className = 'dot'+(i===0?' on':'');
+    d.addEventListener('click',(function(idx){return function(){go(idx);};})(i));
+    dotsEl.appendChild(d);
+    dots.push(d);
+  }
+
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var counter = document.getElementById('counter');
+  var playBtn = document.getElementById('playBtn');
+  var secLabel = document.getElementById('secLabel');
+
+  function go(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('on');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('on');
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === total - 1;
+    counter.textContent = (cur+1) + ' / ' + total;
+    secLabel.textContent = sectionNames[cur] || '';
+    if(cur === total-1 && playing) stopPlay();
+  }
+
+  function stopPlay(){ playing=false; clearInterval(timer); playBtn.textContent='▶'; }
+
+  prevBtn.addEventListener('click',function(){ go(cur-1); if(playing)stopPlay(); });
+  nextBtn.addEventListener('click',function(){ go(cur+1); if(playing)stopPlay(); });
+
+  playBtn.addEventListener('click',function(){
+    if(playing){ stopPlay(); }
+    else {
+      if(cur===total-1) go(0);
+      playing=true; playBtn.textContent='⏸';
+      timer = setInterval(function(){
+        if(cur < total-1){ go(cur+1); } else { stopPlay(); }
+      }, INTERVAL);
+    }
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight' && cur<total-1){ go(cur+1); if(playing)stopPlay(); }
+    if(e.key==='ArrowLeft'  && cur>0)      { go(cur-1); if(playing)stopPlay(); }
+    if(e.key===' '){ playBtn.click(); e.preventDefault(); }
+  });
+})();
+</script>
+</body>
+</html>
